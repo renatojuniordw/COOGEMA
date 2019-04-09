@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
+
+    <meta name="theme-color" content="#FFA500">
+    <link rel="manifest" href="../js/config/manifest.json?version=1.0.3">
+
+    <title>COOGEMA</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet"
+      href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../images/favicon.png" />
+  </head>
+
+  <body>
+
+    <div class="container-scroller">
+      <!-- MENU SUPERIOR -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top
+        d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center
+          justify-content-center">
+          <a class="navbar-brand brand-logo" href="../pages/home.html"><img
+              src="../images/logo.svg" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="../pages/home.html"><img
+              src="../images/logo-mini.svg"
+              alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+              <li class="nav-item nav-logout d-none d-lg-block">
+                <a class="nav-link" class="btnSair" onclick="return
+                  UTILS.desconectar();">
+                  <i class="mdi mdi-power"></i>
+                </a>
+              </li>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
+                data-toggle="dropdown" aria-expanded="false">
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black" id="nmUserLogado"></p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown"
+                aria-labelledby="profileDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" class="btnSair" onclick="return
+                  UTILS.desconectar();">
+                  <i class="mdi mdi-logout mr-2 text-primary"></i>
+                  Sair
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none
+            align-self-center" type="button"
+            data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="container-fluid page-body-wrapper">
+        <!-- MENU ESQUEDO -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/home.html">
+                <span class="menu-title">Home</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic"
+                aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Alunos</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link"
+                      href="cadastrar.html">Cadastrar</a></li>
+                  <li class="nav-item"> <a class="nav-link"
+                      href="consultar.html">Consultar</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/consultar-parceiros.html">
+                <span class="menu-title">Parceiros</span>
+                <i class="mdi mdi-account-multiple menu-icon"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white
+                  mr-2">
+                  <i class="mdi mdi-home"></i>
+                </span>
+                Cadastro
+              </h3>
+            </div>
+            <form action="" method="post">
+
+              <!-- Dados do aluno -->
+              <div class="card">
+                <div class="card-body">
+
+                  <h6>
+                    Dados do aluno
+                    <hr>
+                  </h6>
+                  <!-- nome -->
+                  <div class="form-row">
+                    <div class="col-12">
+                      <label for="">Nome completo</label>
+                      <input type="text" class="form-control" id="nome"
+                        maxlength="200" required>
+                    </div>
+                  </div>
+                  <br>
+
+                  <!-- rg, cpf, data de nascimento -->
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="">RG</label>
+                      <input type="text" class="form-control" id="rg"
+                        maxlength="20" required>
+                    </div>
+                    <div class="col">
+                      <label for="">CPF</label>
+                      <input type="text" class="form-control" id="cpf"
+                        maxlength="200" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Data de nascimento</label>
+                      <input type="date" class="form-control"
+                        id="dtNascimento"
+                        maxlength="200" required>
+                    </div>
+                  </div>
+                  <br>
+
+                  <!-- telefone, email, Escolaridade -->
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="">Escolaridade</label>
+                      <input type="text" class="form-control"
+                        id="escolaridade"
+                        maxlength="200" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Telefone</label>
+                      <input type="text" class="form-control" id="nTelefone"
+                        maxlength="200" required>
+                    </div>
+                    <div class="col-6">
+                      <label for="">E-mail</label>
+                      <input type="email" class="form-control" id="email"
+                        maxlength="200" required>
+                    </div>
+                  </div>
+                  <br>
+
+                  <!-- Portador de necessidades especiais? -->
+                  <div class="form-row">
+                    <div class="col-6">
+                      <label for=""> Portador de necessidades especiais?</label>
+                      <input type="radio" name="snNecessidades" id="snSim"
+                        value="Sim"> Sim
+                      <br>
+                      <input type="radio" name="snNecessidades" id="snNao"
+                        value="Não" checked> Não
+                    </div>
+                    <!-- <div class="col-3">
+                    </div> -->
+                    <div class="col">
+                      <label for="">Qual ?</label>
+                      <input type="text" class="form-control"
+                        id="qualNecessidade" maxlength="200" readonly>
+                    </div>
+                  </div>
+                  <br>
+
+                  <div class="form-row">
+                    <div class="col-2">
+                      <label for="">Foto</label>
+                    </div>
+                    <div class="col-7">
+                      <input type="file" name="" id="foto" style="width: 100%;">
+                    </div>
+
+                  </div>
+                  <br>
+                  <br>
+
+                  <!-- ENDERECO -->
+                  <h6>
+                    Endereço
+                    <hr>
+                  </h6>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="">CEP</label>
+                      <input type="text" class="form-control" id="cep"
+                        maxlength="20" required>
+                    </div>
+                    <div class="col-8">
+                      <label for="">Rua</label>
+                      <input type="text" class="form-control" id="rua"
+                        maxlength="200" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Número</label>
+                      <input type="number" class="form-control" id="numero"
+                        required>
+                    </div>
+                  </div>
+                  <br>
+
+                  <div class="form-row">
+                    <div class="col-5">
+                      <label for="">Complemento</label>
+                      <input type="text" name="" class="form-control"
+                        id="complemento">
+                    </div>
+                    <div class="col">
+                      <label for="">Bairro</label>
+                      <input type="text" name="" class="form-control"
+                        id="bairro" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Cidade</label>
+                      <input type="text" name="" class="form-control"
+                        id="cidade" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Estado</label>
+                      <input type="text" name="" class="form-control"
+                        id="estado" required>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+
+                  <h6>
+                    Dados do responsável legal
+                    <hr>
+                  </h6>
+
+                  <div class="form-row">
+                    <div class="col-8">
+                      <label for="">Nome do responsável</label>
+                      <input type="text" class="form-control"
+                        id="nomeResponsavel" maxlength="200" required>
+                    </div>
+                    <div class="col">
+                      <label for="">Profissão</label>
+                      <input type="text" class="form-control" id="profissao"
+                        maxlength="100" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <div class="text-right">
+                <button type="submit" id="btnCad" class="btn btn-info">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center
+              justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block
+                d-sm-inline-block">COOGEMA © 2019 </span>
+            </div>
+          </footer>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="../vendors/js/vendor.bundle.base.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="../js/config/app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script
+      src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/5.8.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/5.8.4/firebase-messaging.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/5.8.4/firebase-functions.js"></script>
+    <script src="../js/config/utils.js?version=1.0.3"></script>
+    <script src="../js/script/cadastro.js?version=1.0.3"></script>
+
+    <script src="../vendors/js/vendor.bundle.addons.js"></script>
+
+    <script src="../js/sweetalert/sweetalert.min.js"></script>
+
+    <script src="../js/off-canvas.js"></script>
+    <script src="../js/misc.js"></script>
+    <script src="../js/buscarCEP.js?version=1.0.3"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+  </body>
+
+</html>

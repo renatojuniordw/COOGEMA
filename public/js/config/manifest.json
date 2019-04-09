@@ -1,0 +1,14 @@
+{
+    "name": "COOGEMA",
+    "short_name": "COOGEMA",
+    "display": "minimal-ui",
+    "start_url": "/",
+    "theme_color": "#FFA500",
+    "background_color": "#FFA500",
+    "icons": [
+        {
+            "src": "https://coogema-5cb43.firebaseapp.com/images/favicon.png",
+            "sizes": "96x96"
+        }
+    ]
+}
