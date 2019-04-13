@@ -44,9 +44,11 @@ $('#btnCad').bind('click', function (e) {
 });
 
 $("#btnModal").click(function (e) {
+    $.LoadingOverlay("show");
     $('#btnCad').text('Salvar');
     $("#exampleModalLabel").html(`Cadastrar Parceiro`);
     limparCampos();
+    $.LoadingOverlay("hide");
 });
 
 $("#example").on('click', 'button', function (e) {
@@ -82,9 +84,11 @@ function editarParceiro(id, itemUpdate) {
 }
 
 function salvarParceiro(itemAdd) {
+    $.LoadingOverlay("show");
     firebase.database().ref().child('parceiros').push(itemAdd).then(function (e) {
         swal("Parceiro cadastrado com sucesso!", "", "success").then(function () {
             $('#exampleModal').modal('hide');
+            $.LoadingOverlay("hide");
             limparCampos();
         });
     });
@@ -92,14 +96,18 @@ function salvarParceiro(itemAdd) {
 
 function carregarInputs(dadosAluno) {
     $.each($('input, select'), function (i, input) {
-        $("#" + input.id).val(dadosAluno[input.id]);
+        if (input.id !== "") {
+            $("#" + input.id).val(dadosAluno[input.id]);
+        }
     });
     $.LoadingOverlay("hide");
 }
 
 function limparCampos() {
     $.each($('input, select'), function (i, input) {
-        $("#" + input.id).val(" ");
+        if (input.id !== "") {
+            $("#" + input.id).val(" ");
+        }
     });
 }
 

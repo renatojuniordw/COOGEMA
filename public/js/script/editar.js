@@ -10,10 +10,12 @@
         } else {
             loadDadosAluno(idAluno);
             UTILS.regraSnNecessidade();
+            UTILS.inputMascaras();
         }
     });
 
     function loadDadosAluno(idAluno) {
+        $.LoadingOverlay("show");
         var refDataBase = firebase.database().ref('alunos/' + idAluno);
 
         refDataBase.on('value', function (snapshot) {
@@ -36,12 +38,13 @@
                     }
                 }
             });
-
+            $.LoadingOverlay("hide");
         });
     }
 
     $('#btnCad').bind('click', function (e) {
         e.preventDefault();
+        $.LoadingOverlay("show");
 
         var itemUpdate = UTILS.getValueInput();
         itemUpdate["dtInsercao"] = new Date().toLocaleDateString();
@@ -53,12 +56,14 @@
                 UTILS.salvarArquivo(idAluno).then(function (url) {
                     itemUpdate["foto"] = url;
                     UTILS.editarAluno(idAluno, itemUpdate).then(function () {
+                        $.LoadingOverlay("hide");
                         swal("Aluno Alterado com sucesso!", "Clique em 'OK' para continuar.", "success").then(() => {
                             UTILS.redirect("consultar");
                         });
                     });
                 });
             } else {
+                $.LoadingOverlay("hide");
                 swal("Aluno Alterado com sucesso!", "Clique em 'OK' para continuar.", "success").then(() => {
                     UTILS.redirect("consultar");
                 });

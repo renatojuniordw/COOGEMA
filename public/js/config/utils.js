@@ -79,14 +79,12 @@ UTILS.getValueInput = function () {
     var itemSave = {};
 
     $.each($('input'), function (i, input) {
-        if (input.type != "radio") {
-
+        if (input.type != "radio" && input.id !== "") {
             if ($("#" + input.id).val() != "") {
                 itemSave[input.id] = $("#" + input.id).val();
             } else {
                 itemSave[input.id] = "N/A";
             }
-
         }
     });
 

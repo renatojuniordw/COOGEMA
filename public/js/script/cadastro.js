@@ -4,10 +4,11 @@ $(document).ready(function () {
 });
 
 function events() {
-
+    $.LoadingOverlay("show");
     UTILS.inputMascaras();
-
+    
     $('#btnCad').bind('click', function (e) {
+        $.LoadingOverlay("show");
         e.preventDefault();
 
         var itemAdd = UTILS.getValueInput();
@@ -17,6 +18,7 @@ function events() {
             UTILS.salvarArquivo(e.key).then(function (url) {
                 itemAdd["foto"] = url;
                 UTILS.editarAluno(e.key, itemAdd).then(function (url) {
+                    $.LoadingOverlay("hide");
                     swal("Aluno cadastrado com sucesso!", "", "success").then(function () {
                         UTILS.redirect("consultar"); s
                     });
@@ -24,7 +26,8 @@ function events() {
             });
         });
     });
-
+    
+    $.LoadingOverlay("hide");
     UTILS.regraSnNecessidade();
 }
 
@@ -33,7 +36,6 @@ function salvarArquivo() {
     var storageRef = firebase.storage().ref();
     var nmArquivo = id + "." + file.name.split(".")[1]
     var thisRef = storageRef.child('fotosAlunos/' + nmArquivo);
-    // var thisRef = storageRef.child('fotosAlunos/' + file.name);
 
     return thisRef.put(file).then(function (snapshot) {
         console.log('Uploaded a blob or file! ', snapshot);
