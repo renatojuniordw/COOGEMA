@@ -6,7 +6,7 @@ var dadosUsuario = {
 }
 
 $(document).ready(function () {
-    // UTILS.getUsuario();
+    UTILS.getUsuario();
 });
 
 UTILS.desconectar = function () {
@@ -94,7 +94,7 @@ UTILS.getValueInput = function () {
         itemSave["qualNecessidade"] = "N/A";
     }
 
-    // itemSave["usuario"] = dadosUsuario.email;
+    itemSave["usuario"] = dadosUsuario.email;
 
     return itemSave;
 }
