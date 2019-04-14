@@ -2,6 +2,7 @@
 (() => {
 
     let idAluno = 0;
+    var urlFoto = "";
 
     $(document).ready(function () {
         idAluno = getUrlVars()["idAluno"];
@@ -20,19 +21,26 @@
 
         refDataBase.on('value', function (snapshot) {
             let dadosAluno = snapshot.val();
+            urlFoto = dadosAluno["foto"];
+            console.log(urlFoto);
+
             $.each($('input'), function (i, input) {
                 if (input.type != "radio" & input.id != "foto") {
                     $("#" + input.id).val(dadosAluno[input.id]);
                 } else {
-                    if (input.name == "snNecessidade") {
+                    if (input.name == "snNecessidades") {
                         switch (dadosAluno["snNecessidade"]) {
                             case "Sim":
-                                $("#snSim").attr('checked', true);
-                                $("#qualNecessidade").attr("readonly", false)
+                                setInterval(function () {
+                                    $("#snSim").attr('checked', true);
+                                    $("#qualNecessidade").attr("readonly", false)
+                                }, 1000);
                                 break;
                             case "Não":
-                                $("#snNao").attr('checked', true);
-                                $("#qualNecessidade").attr("readonly", true)
+                                setInterval(function () {
+                                    $("#snNao").attr('checked', true);
+                                    $("#qualNecessidade").attr("readonly", true);
+                                }, 1000);
                                 break;
                         }
                     }
@@ -49,7 +57,7 @@
         var itemUpdate = UTILS.getValueInput();
         itemUpdate["dtInsercao"] = new Date().toLocaleDateString();
 
-        if ($("#foto").val() == "") delete itemUpdate["foto"]
+        if ($("#foto").val() == "") itemUpdate["foto"] = urlFoto
 
         UTILS.editarAluno(idAluno, itemUpdate).then(function () {
             if ($("#foto").val() !== "") {
