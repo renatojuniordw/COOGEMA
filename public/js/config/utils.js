@@ -6,7 +6,7 @@ var dadosUsuario = {
 }
 
 $(document).ready(function () {
-    // UTILS.getUsuario();
+    UTILS.getUsuario();
 });
 
 UTILS.desconectar = function () {
