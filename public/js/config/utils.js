@@ -6,7 +6,7 @@ var dadosUsuario = {
 }
 
 $(document).ready(function () {
-    UTILS.getUsuario();
+    // UTILS.getUsuario();
 });
 
 UTILS.desconectar = function () {
@@ -164,4 +164,63 @@ function isGetPagina() {
     }
 
     return isResult;
+}
+
+UTILS.criarExcel = function (nmExcel, descExcel, toSheet, msgError) {
+    var nameSS = nmExcel;
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+        Title: nameSS,
+        Subject: descExcel,
+        Author: "Roster SDO",
+        CreatedDate: new Date()
+    };
+    wb.SheetNames.push(nameSS);
+    var ws_data = toSheet;
+
+    if (ws_data.length > 0) {
+        var ws = XLSX.utils.json_to_sheet(ws_data); //setar tamanho das colunas
+
+        var numberParams = Object.keys(toSheet[0]).length;
+        var wscols = [];
+
+        for (var i = 0; i < numberParams; i++) {
+            var ii = {
+                wch: 20
+            };
+            wscols.push(ii);
+        }
+
+        ws['!cols'] = wscols; //criar filtros
+
+        ws['!autofilter'] = {
+            ref: "A1:AAA5000"
+        };
+        wb.Sheets[nameSS] = ws;
+        var wbout = XLSX.write(wb, {
+            bookType: 'xlsx',
+            type: 'binary',
+            cellStyles: true
+        });
+        saveAs(new Blob([_s2ab_Excel(wbout)], {
+            type: "application/octet-stream"
+        }), nameSS + '.xlsx');
+    } else {
+        $('#myModal').modal('hide'); // alertify.alert("Ocorreu um erro na exportação, tente novamente.");
+
+        alertify.alert(msgError);
+    }
+};
+
+function _s2ab_Excel(s) {
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+
+    var view = new Uint8Array(buf); //create uint8array as viewer
+
+    for (var i = 0; i < s.length; i++) {
+        view[i] = s.charCodeAt(i) & 0xFF;
+    } //convert to octet
+
+
+    return buf;
 }

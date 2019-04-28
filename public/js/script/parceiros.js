@@ -4,7 +4,7 @@
 var idParceiro = 0;
 
 $(document).ready(function () {
-    loadTableParceiros();
+    // loadTableParceiros();
 });
 
 function loadTableParceiros() {
@@ -127,5 +127,32 @@ function htmlTr(entidade, contato, email, cargo, tipo, idFirebase) {
   </tr>
     `;
 }
+
+$("#salvar").bind("click", function () {
+    $.LoadingOverlay("show");
+    var reader = new FileReader();
+    var file = $("#excel")[0].files[0];
+
+    if (file) {
+        reader.readAsArrayBuffer(file);
+        reader.onload = function (e) {
+            var data = new Uint8Array(reader.result);
+            var wb = XLSX.read(data, { type: 'array' });
+
+            var sheetName = wb.SheetNames[0];
+
+            var sheet = wb.Sheets[sheetName];
+            sheet = XLSX.utils.sheet_to_json(sheet);
+            console.log(sheet);
+
+            $.each(sheet, function (i, item) {
+                salvarParceiro(item);
+            });
+
+        };
+    } else {
+        alert("Não existe arquivo");
+    }
+});
 
 // })();
