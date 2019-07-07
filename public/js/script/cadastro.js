@@ -20,7 +20,7 @@ function events() {
                 UTILS.editarAluno(e.key, itemAdd).then(function (url) {
                     $.LoadingOverlay("hide");
                     swal("Aluno cadastrado com sucesso!", "", "success").then(function () {
-                        UTILS.redirect("consultar"); s
+                        UTILS.redirect("consultar");
                     });
                 });
             });

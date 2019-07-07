@@ -4,7 +4,7 @@
 var idParceiro = 0;
 
 $(document).ready(function () {
-    // loadTableParceiros();
+    loadTableParceiros();
 });
 
 function loadTableParceiros() {
@@ -76,7 +76,8 @@ $("#example").on('click', 'button', function (e) {
 
 function editarParceiro(id, itemUpdate) {
     firebase.database().ref().child('parceiros/' + id).set(itemUpdate).then(function () {
-        swal("Aluno Alterado com sucesso!", "Clique em 'OK' para continuar.", "success").then(() => {
+        $.LoadingOverlay("hide");
+        swal("Parceiro alterado com sucesso!", "Clique em 'OK' para continuar.", "success").then(() => {
             $('#exampleModal').modal('hide');
             limparCampos();
         });
@@ -86,6 +87,7 @@ function editarParceiro(id, itemUpdate) {
 function salvarParceiro(itemAdd) {
     $.LoadingOverlay("show");
     firebase.database().ref().child('parceiros').push(itemAdd).then(function (e) {
+        $.LoadingOverlay("hide");
         swal("Parceiro cadastrado com sucesso!", "", "success").then(function () {
             $('#exampleModal').modal('hide');
             $.LoadingOverlay("hide");
