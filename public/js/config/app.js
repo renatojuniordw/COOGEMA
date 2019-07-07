@@ -18,4 +18,4 @@ var dev = {
   appId: "1:780311406247:web:4bcee58e436fadeb"
 };
 
-firebase.initializeApp(dev);
+firebase.initializeApp(prod);
