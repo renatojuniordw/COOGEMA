@@ -124,6 +124,7 @@ UTILS.redirectIndex = function () {
 }
 
 UTILS.alertRedirectIndex = function (msg) {
+    $.LoadingOverlay("hide");
     swal(msg).then(function () {
         UTILS.redirectIndex();
     });
